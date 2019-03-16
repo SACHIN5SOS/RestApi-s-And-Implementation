@@ -12,12 +12,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser,urlencode({extended:false}));
 
-// app.use((req, res, next)=>{
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
-//     res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-//     next();
-// });
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
+   if(res.method==='OPTIONS')
+   {
+    res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
+   }
+    next();
+});
 
 
 const port = process.env.PORT || 3000;
