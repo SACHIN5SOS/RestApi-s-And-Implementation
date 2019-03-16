@@ -3,22 +3,19 @@ const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 const {mongoose} = require('./db/mongoose');
 const {BankApp} = require('./models/bankapp');
-const cors= require('cors');
 
 const app = express();
 
-app.use(cors());
 
 app.use(bodyParser.json());
-app.use(bodyParser,urlencode({extended:false}));
 
 app.use((req, res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Authorization');
-   if(res.method==='OPTIONS')
-   {
-    res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
-   }
+    // if(res.method==='OPTIONS')
+    // {
+    //     res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
+    // }
     next();
 });
 
